@@ -1,0 +1,25 @@
+<?php
+
+namespace light;
+
+/**
+ * 组件接口
+ *
+ * @package light
+ */
+interface Component
+{
+    /**
+     * 组件访问器
+     *
+     * @return mixed
+     */
+    public function getAccessor();
+
+    /**
+     * 组件注册方法
+     *
+     * @return mixed
+     */
+    public function register();
+}

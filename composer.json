@@ -1,0 +1,35 @@
+{
+    "name": "light/light-framework",
+    "description": "micro php framework names Light",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fengqi",
+            "email": "lyf362345@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3.0",
+        "ext-fileinfo": "*",
+        "nikic/fast-route": "^1.0",
+        "hupu/net-client": "^0.1.1",
+        "symfony/console": "^2.8",
+        "smarty/smarty": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "light\\": "light/"
+        },
+        "files": [
+            "light/Support/Helpers.php"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@gitlab.hupu.com:hupu/net-client.git"
+        }
+    ]
+}
