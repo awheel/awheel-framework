@@ -64,9 +64,9 @@ abstract class Model
 	public $read = false;
 
 	/**
-	 * 自动维护 created_at 和 updated_at
+	 * 自动维护 created_at 和 updated_at, 或其他指定字段
 	 *
-	 * @var array
+	 * @var array|bool
 	 */
 	public $timestamps = false;
 
@@ -154,19 +154,22 @@ abstract class Model
 
 		$arguments = array_merge([$this->table], $arguments);
 
-		// 自动维护数据库 插入更新时间
-		// todo 可以指定其他字段
-		if ($this->timestamps) {
-			$timestamp = date('Y-m-d H:i:s');
+        // 自动维护数据库 插入更新时间
+        $timestamp = date('Y-m-d H:i:s');
+        if (is_bool($this->timestamps) && $this->timestamps) {
+            if ($method == 'insert' || $method == 'replace') {
+                $arguments[1] =  array_merge($arguments[1], ['created_at' => $timestamp, 'updated_at' => $timestamp]);
+            }
 
-			if ($method == 'insert' || $method == 'replace') {
-				$arguments[1] =  array_merge($arguments[1], ['created_at' => $timestamp, 'updated_at' => $timestamp]);
-			}
-
-			if ($method == 'update') {
-				$arguments[1] = array_merge($arguments[1], ['updated_at' => $timestamp]);
-			}
-		}
+            if ($method == 'update') {
+                $arguments[1] = array_merge($arguments[1], ['updated_at' => $timestamp]);
+            }
+        }
+        elseif ($this->timestamps && is_array($this->timestamps)) {
+            foreach ($this->timestamps as $item) {
+                $arguments[1] = array_merge($arguments[1], [$item => $timestamp]);
+            }
+        }
 
 		return call_user_func_array([$this->getConnectInstance(), $method], $arguments);
 	}
