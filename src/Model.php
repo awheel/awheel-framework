@@ -4,7 +4,6 @@ namespace light;
 
 use PDO;
 use medoo;
-use light\App;
 
 /**
  * @method select($columns, $where) Select data from database
@@ -41,7 +40,7 @@ abstract class Model
 	 *
 	 * @var
 	 */
-	protected $database = 'hupu_games';
+    public $database;
 
 	/**
 	 * 表名
@@ -175,17 +174,21 @@ abstract class Model
     /**
      * 获取 connect 实例
      *
-     * @return \Medoo
+     * @return \medoo
      */
     protected function getConnectInstance()
     {
         if (!array_key_exists($this->database, $this->connect)) {
-            $config = app()->configGet('database.'.$this->database.'.master');
-            $this->connect[$this->database]['master'] = self::connection($config);
+            $database = app()->configGet('database');
+            $driver = $database['driver'];
+            $config = $database['config'];
 
-            $config = app()->configGet('database.'.$this->database.'.slave');
-            $config = $config[array_rand($config)];
-            $this->connect[$this->database]['slave'] = self::connection($config);
+            $master = $config[$this->database]['master'];
+            $this->connect[$this->database]['master'] = self::connection($master, $driver);
+
+            $slave = $config[$this->database]['slave'];
+            $slave = $slave[array_rand($slave)];
+            $this->connect[$this->database]['slave'] = self::connection($slave, $driver);
         }
 
         return $this->connect[$this->database][$this->read ? 'slave' : 'master'];
