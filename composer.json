@@ -16,14 +16,15 @@
         "nikic/fast-route": "^1.0",
         "hupu/net-client": "^0.1.1",
         "symfony/console": "^2.8",
-        "smarty/smarty": "^3.1"
+        "smarty/smarty": "^3.1",
+        "monolog/monolog": "^1.20"
     },
     "autoload": {
         "psr-4": {
-            "light\\": "light/"
+            "light\\": "src/"
         },
         "files": [
-            "light/Support/Helpers.php"
+            "src/Support/Helpers.php"
         ]
     },
     "repositories": [
