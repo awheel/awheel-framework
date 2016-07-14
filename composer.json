@@ -17,7 +17,8 @@
         "hupu/net-client": "^0.1.1",
         "symfony/console": "^2.8",
         "smarty/smarty": "^3.1",
-        "monolog/monolog": "^1.20"
+        "monolog/monolog": "^1.20",
+        "catfan/medoo": "^1.1"
     },
     "autoload": {
         "psr-4": {
