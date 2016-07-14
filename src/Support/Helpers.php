@@ -141,3 +141,15 @@ function array_pull(&$array, $key, $default = null)
 
     return $value;
 }
+
+/**
+ * 获取 basePath 或基于 basePath 的目录
+ *
+ * @param string $path
+ *
+ * @return string
+ */
+function base_path($path = '')
+{
+    return app()->basePath.($path ? '/'.ltrim('/', $path) : '');
+}
