@@ -24,6 +24,8 @@ class SoaComponent implements Component
     public function register()
     {
         $soaConfig = app()->configGet('soa');
+        if (!$soaConfig) return null;
+
         $instance = [];
         foreach ($soaConfig as $project => $config) {
             $instance[$project] = function () use ($config) {
