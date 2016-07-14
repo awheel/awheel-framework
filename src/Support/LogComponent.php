@@ -25,8 +25,8 @@ class LogComponent implements Component
      */
     public function register()
     {
-        $file = app()->configGet('app.log_file');
-        $level = app()->configGet('app.log_level');
+        $file = app()->configGet('app.log_file', '/tmp/light.log');
+        $level = app()->configGet('app.log_level', 'ERROR');
 
         return function () use ($file, $level) {
             $handler = new StreamHandler($file, $level);

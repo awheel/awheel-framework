@@ -23,9 +23,9 @@ class ViewComponent implements Component
      */
     public function register()
     {
-        if (app()->runningInConsole()) return [];
+        $frontendConfig = app()->configGet('view');
+        if (app()->runningInConsole() || !$frontendConfig) return [];
 
-        $frontendConfig = app()->configGet('frontend');
         $instances = [];
         foreach ($frontendConfig as $driver => $config) {
             $instances[$driver] = function () use ($driver, $config) {
