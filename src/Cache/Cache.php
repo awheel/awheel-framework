@@ -21,6 +21,13 @@ class Cache
     protected $driver;
 
     /**
+     * 配置
+     *
+     * @var array
+     */
+    protected $config = [];
+
+    /**
      * 默认缓存时间
      *
      * @var
@@ -44,21 +51,16 @@ class Cache
     /**
      * Cache constructor.
      *
-     * @param string $driver
      * @param array $config
      */
-    public function __construct($driver = 'redis', array $config = [])
+    public function __construct(array $config)
     {
-        if (empty($config)) {
-            $config = app()->configGet('cache');
-        }
+        $this->driver = $config['driver'];
+        $this->prefix = $config['prefix'];
+        $this->config = $config['config'][$this->driver];
 
-        $cacheConfig = $config['config'][$config['driver']];
-        $cacheDiver = $this->namespace . ucfirst($config['driver']).'Driver';
-        $this->prefix = $config['cache_prefix'];
-        unset($config['cache_prefix'], $config['driver']);
-
-        $this->driver = new $cacheDiver($cacheConfig);
+        $cacheDiver = $this->namespace . ucfirst($this->driver) . 'Driver';
+        $this->driver = new $cacheDiver($this->config);
 
         return $this;
     }

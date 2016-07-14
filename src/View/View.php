@@ -93,7 +93,6 @@ class View
         $this->viewName = $viewName;
         $this->viewVars = array_merge($this->viewVars, (array) $vars);
 
-        $response = '';
         switch ($this->driver) {
             case 'fis':
                 $response = $this->loadSmarty();
@@ -118,7 +117,7 @@ class View
     {
         $this->viewVars = array_merge($this->viewVars, [$key => $value]);
 
-        return $this;
+        return true;
     }
 
     /**
@@ -130,11 +129,6 @@ class View
     {
         foreach ($this->viewVars as $var => $val) {
             $this->view->assign($var, $val);
-        }
-
-        // 测试代码
-        if (app()->configGet('app.debug') && isset($_REQUEST['test'])) {
-            echo json_encode($this->viewVars);exit;
         }
 
         $viewName = strtr($this->viewName, ['.' => '/']);
