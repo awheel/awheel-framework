@@ -44,6 +44,8 @@ abstract class Command extends SymfonyCommand
     public function configure()
     {
         $this->setName($this->name)->setDescription($this->description);
+
+        $this->specifyParameters();
     }
 
     /**
@@ -84,7 +86,95 @@ abstract class Command extends SymfonyCommand
      */
     public function handle()
     {
-        return 'Hi HupuTv';
+        return 'Hi Light';
+    }
+
+    /**
+     * 设置命令行的参数和可选项
+     *
+     * @return void
+     */
+    protected function specifyParameters()
+    {
+        foreach ($this->getArguments() as $arguments) {
+            call_user_func_array([$this, 'addArgument'], $arguments);
+        }
+
+        foreach ($this->getOptions() as $options) {
+            call_user_func_array([$this, 'addOption'], $options);
+        }
+    }
+
+    /**
+     * 设置命令行的参数
+     *
+     * @return array
+     */
+    public function getArguments()
+    {
+        return [];
+    }
+
+    /**
+     * 设置命令行的可选项
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return [];
+    }
+
+    /**
+     * 判断是否传了某个参数
+     *
+     * @param  string|int  $name
+     * @return bool
+     */
+    public function hasArgument($name)
+    {
+        return $this->input->hasArgument($name);
+    }
+
+    /**
+     * 获取命令行参数, 为空时, 返回全部参数
+     *
+     * @param  string  $key
+     * @return string|array
+     */
+    public function argument($key = null)
+    {
+        if (is_null($key)) {
+            return $this->input->getArguments();
+        }
+
+        return $this->input->getArgument($key);
+    }
+
+    /**
+     * 判断是否设置了某个可选项
+     *
+     * @param  string  $name
+     * @return bool
+     */
+    public function hasOption($name)
+    {
+        return $this->input->hasOption($name);
+    }
+
+    /**
+     * 获取可选项的值, 为空时获取全部
+     *
+     * @param  string  $key
+     * @return string|array
+     */
+    public function option($key = null)
+    {
+        if (is_null($key)) {
+            return $this->input->getOptions();
+        }
+
+        return $this->input->getOption($key);
     }
 
     /**

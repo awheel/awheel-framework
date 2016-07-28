@@ -103,6 +103,13 @@ class HttpClient
     protected $headers = [];
 
     /**
+     * 返回
+     *
+     * @var Response
+     */
+    protected $response;
+
+    /**
      * 初始化
      *
      * @param string $method
@@ -348,7 +355,8 @@ class HttpClient
         $content = curl_exec($ch);
         @list($_header, $content) = explode("\r\n\r\n", $content, 2);
         if (!$_header || !$content) {
-            return new Response(curl_error($ch), 500, []);
+            $this->response = new Response(curl_error($ch), 500, []);
+            return $this->response;
         }
 
         $_header = explode("\r\n", $_header);
@@ -366,6 +374,7 @@ class HttpClient
         $header = array_merge($header, curl_getinfo($ch));
         curl_close($ch);
 
-        return new Response($content, $header['http_code'], $header);
+        $this->response = new Response($content, $header['http_code'], $header);
+        return $this->response;
     }
 }
