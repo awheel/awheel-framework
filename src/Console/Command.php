@@ -44,6 +44,8 @@ abstract class Command extends SymfonyCommand
     public function configure()
     {
         $this->setName($this->name)->setDescription($this->description);
+
+        $this->specifyParameters();
     }
 
     /**
@@ -84,7 +86,43 @@ abstract class Command extends SymfonyCommand
      */
     public function handle()
     {
-        return 'Hi HupuTv';
+        return 'Hi Light';
+    }
+
+    /**
+     * 设置命令行的参数和可选项
+     *
+     * @return void
+     */
+    protected function specifyParameters()
+    {
+        foreach ($this->getArguments() as $arguments) {
+            call_user_func_array([$this, 'addArgument'], $arguments);
+        }
+
+        foreach ($this->getOptions() as $options) {
+            call_user_func_array([$this, 'addOption'], $options);
+        }
+    }
+
+    /**
+     * 设置命令行的参数
+     *
+     * @return array
+     */
+    public function getArguments()
+    {
+        return [];
+    }
+
+    /**
+     * 设置命令行的可选项
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return [];
     }
 
     /**
