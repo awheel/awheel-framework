@@ -24,7 +24,8 @@ class RedisComponent implements Component
      */
     public function register()
     {
-        $redisConfig = app()->configGet('redis');
+        // todo cluster 适配
+        $redisConfig = app()->configGet('redis.config');
         if (!$redisConfig) return null;
 
         $instances = [];
