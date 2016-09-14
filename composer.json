@@ -12,12 +12,16 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.0",
+        "ext-redis": "*",
         "ext-fileinfo": "*",
         "nikic/fast-route": "^1.0",
         "hupu/net-client": "^0.1.1",
         "symfony/console": "^2.8",
-        "smarty/smarty": "^3.1",
         "monolog/monolog": "^1.20"
+    },
+    "suggest": {
+        "smarty/smarty": "Smarty - the compiling PHP template engine",
+        "ext-memcached": "PHP extension for interfacing with memcached via libmemcached library"
     },
     "autoload": {
         "psr-4": {
