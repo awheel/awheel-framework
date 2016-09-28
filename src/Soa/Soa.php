@@ -52,14 +52,22 @@ class Soa
         $params = array_merge(['router' => $router], $params);
         $state = $this->client->send(json_encode($params)."HUPU-SVR");
         if (!$state) {
-            app()->make('log')->error('soa send error', (array)$params);
+            app()->make('log')->error('soa send error', [$params]);
         }
 
         $data = json_decode($this->client->complete_recv(65535, 0, "HUPU-SVR"), true);
         if ($data == null) {
-            app()->make('log')->error('soa receive error', (array)$params);
+            app()->make('log')->error('soa receive error', [$params]);
         }
 
         return $data;
+    }
+
+    /**
+     * 关闭 socket
+     */
+    public function __destruct()
+    {
+        $this->client->close();
     }
 }
