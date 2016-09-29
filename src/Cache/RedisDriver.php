@@ -19,12 +19,15 @@ class RedisDriver implements InterfaceDriver
     public function __construct(array $config)
     {
         $host = $config['host'];
-        $port = isset($config['port']) ? $config['port'] : '';
-        $timeout = isset($config['timeout']) ? $config['timeout'] : '0.0';
+        $port = isset($config['port']) ? $config['port'] : 6379;
+        $timeout = isset($config['timeout']) ? $config['timeout'] : 5;
+        $db = isset($config['db']) ? $config['db'] : 0;
+        $password = isset($config['password']) ? $config['password'] : null;
 
-        $redis = new Redis();
-        $redis->connect($host, $port, $timeout); // connect(...array_values($config)); php5.6+ 参数自动展开
-        $this->redis = $redis;
+        $this->redis = new Redis();
+        $this->redis->connect($host, $port, $timeout);
+        $this->redis->auth($password);
+        $this->redis->select($db);
 
         return $this;
     }
