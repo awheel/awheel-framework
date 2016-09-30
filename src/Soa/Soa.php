@@ -26,8 +26,6 @@ class Soa
      */
     public function __construct($config = [])
     {
-        app()->make('log')->info('soa init', $config);
-
         if ($this->client == null) {
             $client = new NetClientTCP();
             $client->try_reconnect = true;
