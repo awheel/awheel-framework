@@ -292,10 +292,47 @@ class HttpClient
     {
         return [
             'headers' => $this->headers,
+            'followLocation' => $this->followLocation,
+            'maxRedirects' => $this->maxRedirects,
+            'timeout' => $this->timeout,
             'cookies' => $this->cookies,
             'method' => $this->method,
             'server' => $this->server,
+            'path' => $this->path,
+            'data' => $this->data,
         ];
+    }
+
+    /**
+     * 获取指定的头部信息
+     *
+     * @param $key
+     *
+     * @return mixed|null
+     */
+    public function getHeader($key)
+    {
+        return array_key_exists($key, $this->headers) ? $this->headers[$key] : null;
+    }
+
+    /**
+     * 返回全部头部信息
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * 返回全部数据
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 
     /**
