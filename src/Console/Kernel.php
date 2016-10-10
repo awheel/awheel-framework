@@ -74,7 +74,7 @@ class Kernel
      */
     public function resolveCommands($commands)
     {
-        $consoleApp = new Application('HupuTv', App::VERSION);
+        $consoleApp = new Application($this->app->name(), App::VERSION);
 
         foreach ($commands as $command) {
             $consoleApp->add(new $command);
