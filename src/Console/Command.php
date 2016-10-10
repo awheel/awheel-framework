@@ -2,6 +2,7 @@
 
 namespace light\Console;
 
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Style\OutputStyle;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
@@ -249,5 +250,22 @@ abstract class Command extends SymfonyCommand
     public function colorWrite($message, $style = null)
     {
         $this->output->writeln($style ? "<$style>$message</$style>" : $message);
+    }
+
+    /**
+     * 调用其它命令, example $this->call('example', ['--arg1' => 'value'])
+     *
+     * @param string $command
+     * @param array $arguments
+     *
+     * @return int
+     */
+    public function call($command, $arguments = [])
+    {
+        $command = $this->getApplication()->find($command);
+
+        $input = new ArrayInput($arguments);
+
+        return $command->run($input, $this->output);
     }
 }
