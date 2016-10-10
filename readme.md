@@ -18,7 +18,7 @@ Official [Web Site](http://gitlab.hupu.com/light/light-framework)
 
 ## todo
 
-- [ ] 命令行下允许相互调用
+- [x] 命令行下允许相互调用
 
 ## License
 
