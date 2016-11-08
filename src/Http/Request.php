@@ -9,30 +9,102 @@ namespace light\Http;
  */
 class Request
 {
+    /**
+     * HEAD 请求
+     */
     const METHOD_HEAD = 'HEAD';
+
+    /**
+     * GET 请求
+     */
     const METHOD_GET = 'GET';
+
+    /**
+     * POST 请求
+     */
     const METHOD_POST = 'POST';
+
+    /**
+     * PUT 请求
+     */
     const METHOD_PUT = 'PUT';
+
+    /**
+     * PATCH 请求
+     */
     const METHOD_PATCH = 'PATCH';
+
+    /**
+     * DELETE 请求
+     */
     const METHOD_DELETE = 'DELETE';
+
+    /**
+     * OPTIONS 请求
+     */
     const METHOD_OPTIONS = 'OPTIONS';
 
+    /**
+     * 全部用户如入
+     *
+     * @var array
+     */
     protected $input;
 
+    /**
+     * 用户请求
+     *
+     * @var array
+     */
     public $request;
 
-    public $query;
+    /**
+     * 查询参数
+     *
+     * @var array
+     */
+    protected $query;
 
-    public $attributes;
+    /**
+     * 指定的其它属性
+     *
+     * @var array
+     */
+    protected $attributes;
 
-    public $server;
+    /**
+     * 服务器信息
+     *
+     * @var array
+     */
+    protected $server;
 
-    public $files;
+    /**
+     * 上传的文件
+     *
+     * @var array
+     */
+    protected $files;
 
-    public $cookies;
+    /**
+     * 用户发送的 cookie
+     *
+     * @var array
+     */
+    protected $cookies;
 
+    /**
+     * 用户发送的头信息
+     *
+     * @var
+     */
     public $headers;
 
+    /**
+     * 用户输入的内容
+     *
+     * @var null|string
+     */
     protected $content;
 
     /**
@@ -129,9 +201,25 @@ class Request
         return $request;
     }
 
-    public function except()
+    /**
+     * 获取除了制定的键以外的全部输入
+     *
+     * @param array|mixed $keys
+     *
+     * @return array
+     */
+    public function except($keys)
     {
-        // todo
+        $keys = is_array($keys) ? $keys : [$keys];
+        $input = $this->input();
+
+        foreach ($keys as $key) {
+            if (array_key_exists($key, $input)) {
+                unset($input[$key]);
+            }
+        }
+
+        return $input;
     }
 
     /**
@@ -232,17 +320,35 @@ class Request
 
     public function uri()
     {
-        return $this->server('REQUEST_URI');
+        return urldecode($this->server('REQUEST_URI'));
     }
 
     public function fullUri()
     {
-        return $this->server('HTTPS') ? 'https://' : 'http://' . $this->server('HTTP_HOST').$this->uri();
+        return ($this->server('HTTPS') ? 'https://' : 'http://') . $this->server('HTTP_HOST').$this->uri();
     }
 
-    public function segment()
+    /**
+     * 获取 pathInfo 目录
+     *
+     * @param int $index
+     * @param null $default
+     *
+     * @return null
+     */
+    public function segment(int $index, $default = null)
     {
-        // todo
+        return array_key_exists($index, $this->segments()) ? $this->segments()[$index] : $default;
+    }
+
+    /**
+     * 获取 pathInfo 全部目录
+     *
+     * @return array
+     */
+    public function segments()
+    {
+        return explode('/', $this->getPathInfo());
     }
 
     public function header()
@@ -265,7 +371,6 @@ class Request
 
     /**
      * 是否是 ajax 请求, 使用 X-Requested-With 头判断
-     * todo 临时, 后面挪到 Request 内
      *
      * @return bool
      */
@@ -280,6 +385,11 @@ class Request
         // todo
     }
 
+    /**
+     * 获取请求方式
+     *
+     * @return string
+     */
     public function method()
     {
         return $this->getMethod();
@@ -305,9 +415,16 @@ class Request
         return strtoupper($method);
     }
 
+    /**
+     * 判断是否是某种请求方式
+     *
+     * @param $method
+     *
+     * @return bool
+     */
     public function isMethod($method)
     {
-        // todo
+        return $this->method() == $method;
     }
 
     public function isJson()
@@ -323,9 +440,8 @@ class Request
     public function getPathInfo()
     {
         $query = $this->server('QUERY_STRING');
-        $uri = $this->uri();
 
-        return '/'.trim(str_replace('?'.$query, '', $_SERVER['REQUEST_URI']), '/');
+        return '/'.trim(str_replace('?'.$query, '', $this->uri()), '/');
     }
 
     /**
