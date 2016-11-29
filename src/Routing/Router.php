@@ -366,10 +366,6 @@ class Router
         });
 
         $method = $request->getMethod();
-
-        // todo 更合适的实现方式
-        if ($method == 'OPTIONS') return new Response('', 200);
-
         $pathInfo = $request->getPathInfo();
         $routeInfo = $dispatcher->dispatch($method, $pathInfo);
 
@@ -408,12 +404,12 @@ class Router
             $middleware = array_map(function ($m) { return $this->middlewareNamespace .'\\'. $m; }, $middleware);
 
             $response = (new Pipeline())->send($request)->through($middleware)
-                ->then(function () use ($route) {
-                    return $this->callAction($route);
+                ->then(function () use ($route, $request) {
+                    return $this->callAction($route, $request);
                 });
         }
         else {
-            $response = $this->callAction($route);
+            $response = $this->callAction($route, $request);
         }
 
         if (!$response instanceof Response) {
@@ -427,15 +423,18 @@ class Router
      * 调用路由指定的方法或闭包
      *
      * @param $route
+     * @param Request $request
      *
      * @return mixed
      */
-    public function callAction($route)
+    public function callAction($route, Request $request)
     {
-        $action = $route[1];
+        if ($request->isMethod('OPTIONS')) {
+            return new Response(null, 200);
+        }
 
         // 闭包
-        foreach ($action as $value) {
+        foreach ($route[1] as $value) {
             if ($value instanceof Closure) {
                 return call_user_func_array($value, $route[2]);
                 break;
