@@ -18,6 +18,8 @@ class RedisDriver implements InterfaceDriver
      */
     public function __construct(array $config)
     {
+        // todo 扩展没安装, 抛出异常
+
         $host = $config['host'];
         $port = isset($config['port']) ? $config['port'] : 6379;
         $timeout = isset($config['timeout']) ? $config['timeout'] : 5;
