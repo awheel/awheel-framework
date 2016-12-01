@@ -6,8 +6,9 @@ use Monolog\Formatter\NormalizerFormatter;
 
 /**
  * 虎扑 tv 定制 monolog 格式
- * 
+ *
  * @package light
+ * @deprecated
  */
 class HuputvFormatter extends NormalizerFormatter
 {
