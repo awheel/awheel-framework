@@ -28,6 +28,7 @@ class LogComponent implements Component
         $file = app()->configGet('app.log_file', '/tmp/light.log');
         $level = app()->configGet('app.log_level', 'ERROR');
 
+        // todo 删掉定制业务逻辑 HuputvFormatter
         return function () use ($file, $level) {
             $handler = new StreamHandler($file, $level);
             $handler->setFormatter(new HuputvFormatter());
