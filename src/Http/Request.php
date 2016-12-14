@@ -320,7 +320,10 @@ class Request
 
     public function uri()
     {
-        return urldecode($this->server('REQUEST_URI'));
+        $uri = urldecode($this->server('REQUEST_URI'));
+        $uri = preg_replace('/\/{1,}/', '/', $uri);
+
+        return $uri;
     }
 
     public function fullUri()
