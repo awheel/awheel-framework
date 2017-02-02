@@ -151,5 +151,5 @@ function array_pull(&$array, $key, $default = null)
  */
 function base_path($path = '')
 {
-    return app()->basePath.($path ? '/'.ltrim('/', $path) : '');
+    return app()->basePath.($path ? '/'.ltrim($path, '/') : '');
 }
