@@ -223,7 +223,10 @@ class Response
         }
 
         foreach ($this->headers as $item => $value) {
-            header($item.': '.$value, false, $this->statusCode);
+            $values = is_array($value) ? $value : [$value];
+            foreach($values as $_value){
+                header("{$item}: {$_value}", false, $this->statusCode);
+            }
         }
 
         // todo 设置 protocol, http/1.0, http/1.1, http/2
