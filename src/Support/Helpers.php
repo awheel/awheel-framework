@@ -28,15 +28,17 @@ function app($make = null)
     return Container::getInstance()->make($make);
 }
 
-/**
- * 打印数据, 并停止执行.
- */
-function dd()
-{
-    echo '<pre>';
-    array_map('var_dump', func_get_args());
-    echo '</pre>';
-    exit;
+if (! function_exists('dd')) {
+    /**
+     * 打印数据, 并停止执行.
+     */
+    function dd()
+    {
+        echo '<pre>';
+        array_map('var_dump', func_get_args());
+        echo '</pre>';
+        exit;
+    }
 }
 
 /**
@@ -124,22 +126,24 @@ if (!function_exists('array_column')) {
     }
 }
 
-/**
- * 使用 key 从一个数组获取一条数据, 并删除这条数据
- *
- * @param $array
- * @param $key
- * @param null $default
- *
- * @return null
- */
-function array_pull(&$array, $key, $default = null)
-{
-    $value = isset($array[$key]) ? $array[$key] : $default;
+if (! function_exists('array_pull')) {
+    /**
+     * 使用 key 从一个数组获取一条数据, 并删除这条数据
+     *
+     * @param $array
+     * @param $key
+     * @param null $default
+     *
+     * @return null
+     */
+    function array_pull(&$array, $key, $default = null)
+    {
+        $value = isset($array[$key]) ? $array[$key] : $default;
 
-    unset($array[$key]);
+        unset($array[$key]);
 
-    return $value;
+        return $value;
+    }
 }
 
 /**
