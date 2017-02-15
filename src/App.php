@@ -43,21 +43,24 @@ class App extends Container
 	 */
 	protected $config = [];
 
-	/**
-	 * App constructor.
-	 *
-	 */
-	public function __construct()
+    /**
+     * App constructor.
+     *
+     * @param $path
+     * @param $environment
+     */
+	public function __construct($path, $environment)
 	{
 		mb_internal_encoding('UTF-8');
 		date_default_timezone_set('Asia/Shanghai');
 
 		// 记录程序运行环境
-        // todo 通过其他方式指定 basePath 和 environment
-		$this->basePath = __ROOT__;
-		$this->environment = __ENV__;
+		$this->basePath = $path;
+		$this->environment = $environment;
 
 		$this->name = $this->configGet('app.name', 'light');
+
+		return $this;
 	}
 
 	/**
