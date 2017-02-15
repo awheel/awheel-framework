@@ -339,7 +339,7 @@ class Request
      *
      * @return null
      */
-    public function segment(int $index, $default = null)
+    public function segment($index, $default = null)
     {
         return array_key_exists($index, $this->segments()) ? $this->segments()[$index] : $default;
     }
@@ -466,5 +466,34 @@ class Request
         }
 
         return $this->content;
+    }
+
+    /**
+     * 获取页面来源
+     *
+     * @param null $default
+     *
+     * @return mixed|null
+     */
+    public function referer($default = null)
+    {
+        return $this->server('HTTP_REFERER', $default);
+    }
+
+    /**
+     * 检测当前请求是否是移动设备
+     *
+     * @return bool
+     */
+    public function isMobile()
+    {
+        $pattern = '/(iPad|iPhone|Android|Mobile|Meego|Nokia|Windows Phone|Silk|KFAPWI|RIM Tablet)/isU';
+        $userAgent = $this->server('HTTP_USER_AGENT');
+
+        if ($userAgent && preg_match($pattern, $userAgent)) {
+            return true;
+        }
+
+        return false;
     }
 }
