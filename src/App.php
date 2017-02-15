@@ -13,7 +13,7 @@ use light\Console\Output;
  */
 class App extends Container
 {
-	const VERSION = '1.2.0';
+	const VERSION = '1.4.0';
 
 	/**
 	 * 应用名称
