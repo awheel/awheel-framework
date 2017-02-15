@@ -12,17 +12,9 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.0",
+        "light/array-factory": "^1.0",
         "nikic/fast-route": "^1.0",
-        "symfony/console": "^2.8",
-        "monolog/monolog": "^1.20"
-    },
-    "suggest": {
-        "ext-redis": "PHP extension for interfacing with Redis",
-        "ext-fileinfo": "This extension allows retrieval of information regarding vast majority of file. ",
-        "ext-memcached": "PHP extension for interfacing with memcached via libmemcached library",
-        "smarty/smarty": "Smarty - the compiling PHP template engine",
-        "hupu/net-client": "Hupu Service-Oriented Architecture client",
-        "hupu/medoo-model": "Medoo Model based simple ORM"
+        "symfony/console": "^2.8"
     },
     "autoload": {
         "psr-4": {
@@ -31,5 +23,11 @@
         "files": [
             "src/Support/Helpers.php"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://git.fengqi.tk/light/array-factory.git"
+        }
+    ]
 }
