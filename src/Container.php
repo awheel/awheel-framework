@@ -2,13 +2,7 @@
 
 namespace light;
 
-use Redis;
-use Monolog;
 use Closure;
-use light\Soa\Soa;
-use Monolog\Logger;
-use light\View\View;
-use light\Cache\Cache;
 use light\Http\Kernel;
 use light\Http\Request;
 use light\Http\Response;
@@ -69,11 +63,11 @@ class Container
 
     /**
      * 获取其它组件实例, Ioc
-     * example: app()->make('cache')->get('key'), $this->make('cache')->get('key');
+     * example: app('cache')->get('key'), app()->make('cache')->get('key'), $this->make('cache')->get('key');
      *
      * @param $abstract
      *
-     * @return null|App|Logger|Cache|Soa|Router|View|Request|Response|Redis|Kernel|ConsoleKernel
+     * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|null
      */
     public function make($abstract)
     {

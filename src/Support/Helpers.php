@@ -1,12 +1,8 @@
 <?php
 
 use light\App;
-use light\Soa\Soa;
-use Monolog\Logger;
-use light\View\View;
 use light\Container;
 use light\Http\Kernel;
-use light\Cache\Cache;
 use light\Http\Request;
 use light\Http\Response;
 use light\Routing\Router;
@@ -17,7 +13,7 @@ use light\Console\Kernel as ConsoleKernel;
  *
  * @param $make
  *
- * @return null|App|Logger|Cache|Soa|Router|View|Request|Response|Redis|Kernel|ConsoleKernel;
+ * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|null
  */
 function app($make = null)
 {
