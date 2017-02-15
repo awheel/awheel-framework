@@ -66,17 +66,11 @@ class Kernel
             $response = $router->dispatch($request);
         }
         catch (Exception $e) {
-            $this->app->make('log')->error('runtime exception '. $e->getMessage(), [
-                'code' => $e->getCode(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
-            ]);
-
             if ($this->app->configGet('app.debug')) {
                 throw $e;
             }
 
+            // todo 由用户控制
             return redirect('/');
         }
 
@@ -94,5 +88,7 @@ class Kernel
     public function terminate(Request $request, Response $response)
     {
         // todo 运行 register_shutdown_functions 注册的方法
+
+        return true;
     }
 }
