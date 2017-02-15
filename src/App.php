@@ -2,7 +2,6 @@
 
 namespace light;
 
-use FastRoute;
 use light\Http\Request;
 use light\Console\Input;
 use light\Console\Output;

@@ -1,12 +1,8 @@
 <?php
 
 use light\App;
-use light\Soa\Soa;
-use Monolog\Logger;
-use light\View\View;
 use light\Container;
 use light\Http\Kernel;
-use light\Cache\Cache;
 use light\Http\Request;
 use light\Http\Response;
 use light\Routing\Router;
@@ -17,7 +13,7 @@ use light\Console\Kernel as ConsoleKernel;
  *
  * @param $make
  *
- * @return null|App|Logger|Cache|Soa|Router|View|Request|Response|Redis|Kernel|ConsoleKernel;
+ * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|null
  */
 function app($make = null)
 {
@@ -28,15 +24,17 @@ function app($make = null)
     return Container::getInstance()->make($make);
 }
 
-/**
- * 打印数据, 并停止执行.
- */
-function dd()
-{
-    echo '<pre>';
-    array_map('var_dump', func_get_args());
-    echo '</pre>';
-    exit;
+if (! function_exists('dd')) {
+    /**
+     * 打印数据, 并停止执行.
+     */
+    function dd()
+    {
+        echo '<pre>';
+        array_map('var_dump', func_get_args());
+        echo '</pre>';
+        exit;
+    }
 }
 
 /**
@@ -124,22 +122,24 @@ if (!function_exists('array_column')) {
     }
 }
 
-/**
- * 使用 key 从一个数组获取一条数据, 并删除这条数据
- *
- * @param $array
- * @param $key
- * @param null $default
- *
- * @return null
- */
-function array_pull(&$array, $key, $default = null)
-{
-    $value = isset($array[$key]) ? $array[$key] : $default;
+if (! function_exists('array_pull')) {
+    /**
+     * 使用 key 从一个数组获取一条数据, 并删除这条数据
+     *
+     * @param $array
+     * @param $key
+     * @param null $default
+     *
+     * @return null
+     */
+    function array_pull(&$array, $key, $default = null)
+    {
+        $value = isset($array[$key]) ? $array[$key] : $default;
 
-    unset($array[$key]);
+        unset($array[$key]);
 
-    return $value;
+        return $value;
+    }
 }
 
 /**
