@@ -142,11 +142,12 @@ class App extends Container
 		$keys = explode('.', $key);
 		$keysCount = count($keys);
 		$config = $this->loadConfigure($keys[0]);
+
 		for ($i = 1; $i < $keysCount; $i++) {
-			$config = isset($config[$keys[$i]]) ? $config[$keys[$i]] : '';
+			$config = isset($config[$keys[$i]]) ? $config[$keys[$i]] : 'NOT_HAVE';
 		}
 
-		return empty($config) ? $default : $config;
+		return $config == 'NOT_HAVE' ? $default : $config;
 	}
 
 	/**
