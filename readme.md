@@ -6,6 +6,10 @@ Official [Web Site](http://gitlab.hupu.com/light/light-framework)
 
 小型框架, 从 HupuTv 项目衍生出来.
 
+框架核心强大简洁, 不参与任何业务, 所需任何功能均可自定义扩展.
+
+目前应用: [HupuTv](http://hupu.tv), [NBA比赛中心](https://nba.hupu.com/games)
+
 ## Documentation
 
 - [ ] 路由
@@ -15,15 +19,8 @@ Official [Web Site](http://gitlab.hupu.com/light/light-framework)
 - [ ] 缓存
 - [ ] 辅助方法
 - [ ] 按需加载配置
-- [ ] 组件扩展方便
-
-## todo
-
-- [x] 命令行下允许相互调用
-- [ ] 删掉定制业务逻辑 HuputvFormatter, 交给业务方处理
-- [ ] Redis cluster 适配
-- [ ] 删除定制业务逻辑 SoaComponent, 交给业务方处理
-- [ ] 删除 View 模块, 独立成可选 Component
+- [ ] 按需加载组件
+- [ ] 扩展方便
 
 ## License
 
