@@ -147,7 +147,7 @@ class App extends Container
 			$config = isset($config[$keys[$i]]) ? $config[$keys[$i]] : 'NOT_HAVE';
 		}
 
-		return $config == 'NOT_HAVE' ? $default : $config;
+		return $config === 'NOT_HAVE' ? $default : $config;
 	}
 
 	/**
