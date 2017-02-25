@@ -1,6 +1,6 @@
 # Light framework
 
-Official [Web Site](http://gitlab.hupu.com/light/light-framework)
+Official [Web Site](http://git.fengqi.tk/light/light-framework)
 
 ## Light PHP Framework
 
@@ -16,11 +16,9 @@ Official [Web Site](http://gitlab.hupu.com/light/light-framework)
 - [ ] 命令行
 - [ ] 控制器
 - [ ] 中间件
-- [ ] 缓存
 - [ ] 辅助方法
-- [ ] 按需加载配置
-- [ ] 按需加载组件
-- [ ] 扩展方便
+- [ ] 按需加载
+- [ ] 扩展
 
 ## License
 
