@@ -70,8 +70,7 @@ class Kernel
                 throw $e;
             }
 
-            // todo 由用户控制
-            return redirect('/');
+            // todo 由用户控制跳转方向, 渲染错误信息,
         }
 
         return $response;

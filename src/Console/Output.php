@@ -6,6 +6,5 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Output extends ConsoleOutput
 {
-    // todo
+    // nothing to do
 }
-
