@@ -193,7 +193,22 @@ class App extends Container
         }
 
         $config[array_shift($keys)] = $value;
+
         return $value;
+    }
+
+    /**
+     * 还原被 configSet 修改的设置
+     *
+     * @param $key
+     *
+     * @return mixed
+     */
+    public function configRevert($key)
+    {
+        if (!$key) return false;
+
+        return $this->loadConfigure(current(explode('.', $key)), true);
     }
 
     /**
@@ -230,12 +245,13 @@ class App extends Container
      * 加载配置项配置
      *
      * @param  string $item 配置项
+     * @param  boolean $force 强制重新读取
      *
      * @return $this
      */
-    protected function loadConfigure($item)
+    protected function loadConfigure($item, $force = false)
     {
-        if (array_key_exists($item, $this->config)) {
+        if (array_key_exists($item, $this->config) && $force == false) {
             return $this->config[$item];
         }
 
