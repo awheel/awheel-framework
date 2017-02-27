@@ -3,10 +3,10 @@
 namespace light;
 
 use Closure;
-use light\Http\Kernel;
 use light\Http\Request;
 use light\Http\Response;
 use light\Routing\Router;
+use light\Http\Kernel as HttpKernel;
 use light\Console\Kernel as ConsoleKernel;
 
 /**
@@ -34,10 +34,14 @@ class Container
      * 设置应用实例
      *
      * @param Container $container
+     *
+     * @return boolean
      */
     public static function setInstance(Container $container)
     {
         static::$instance = $container;
+
+        return true;
     }
 
     /**
@@ -55,10 +59,14 @@ class Container
      *
      * @param $abstract
      * @param $instance
+     *
+     * @return boolean
      */
     public function register($abstract, $instance)
     {
         static::$instances[$abstract] = $instance;
+
+        return true;
     }
 
     /**
@@ -67,7 +75,7 @@ class Container
      *
      * @param $abstract
      *
-     * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|null
+     * @return App|Router|Request|Response|HttpKernel|ConsoleKernel|null
      */
     public function make($abstract)
     {
