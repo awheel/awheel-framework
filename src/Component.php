@@ -3,7 +3,7 @@
 namespace light;
 
 /**
- * 组件接口
+ * 组件接口, todo 组件可以设置实例化的环境: Http|Console|Both
  *
  * @package light
  */
