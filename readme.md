@@ -22,4 +22,4 @@ Official [Web Site](http://git.fengqi.tk/light/light-framework)
 
 ## License
 
-MIT
+This project is under the MIT License. See the [LICENSE](http://git.fengqi.tk/light/light-framework/raw/master/LICENSE) file for the full license text.
