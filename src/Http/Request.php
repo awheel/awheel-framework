@@ -436,15 +436,32 @@ class Request
     }
 
     /**
-     * 获取当前 http 请求 pathinfo
+     * 获取当前 http 请求 pathInfo
      *
      * @return string
      */
     public function getPathInfo()
     {
         $query = $this->server('QUERY_STRING');
+        $uri = $this->uri();
+        $script = $this->server('SCRIPT_NAME');
 
-        return '/'.trim(str_replace('?'.$query, '', $this->uri()), '/');
+        if (strpos($uri, $script) !== false) {
+            $physicalPath = $script;
+        }
+        else {
+            $physicalPath = str_replace('\\', '', dirname($script));
+        }
+
+        $pathInfo = $query;
+        if (substr($uri, 0, strlen($physicalPath)) == $physicalPath) {
+            $pathInfo = substr($uri, strlen($physicalPath));
+        }
+
+        $pathInfo = str_replace('?' . $query, '', $pathInfo);
+        $pathInfo = '/' . ltrim($pathInfo, '/');
+
+        return $pathInfo;
     }
 
     /**
