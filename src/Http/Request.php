@@ -380,7 +380,7 @@ class Request
     public function ajax()
     {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == strtolower('XMLHttpRequest');
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == strtolower('XMLHttpRequest');
     }
 
     public function pjax()
@@ -459,9 +459,11 @@ class Request
         }
 
         $pathInfo = str_replace('?' . $query, '', $pathInfo);
-        $pathInfo = '/' . ltrim($pathInfo, '/');
+        if (is_int(stripos($pathInfo, '?'))) {
+            $pathInfo = substr($pathInfo, 0, stripos($pathInfo, '?'));
+        }
 
-        return $pathInfo;
+        return '/' . ltrim($pathInfo, '/');
     }
 
     /**
