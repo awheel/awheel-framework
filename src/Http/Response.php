@@ -48,10 +48,10 @@ class Response
     protected $charset;
 
     /**
-     * HttpResponse constructor.
+     * Response constructor.
      *
-     * @param string $content
-     * @param int $status
+     * @param $content
+     * @param $status
      * @param array $headers
      */
     public function __construct($content = '', $status = 200, $headers = [])
@@ -59,6 +59,20 @@ class Response
         $this->setHeaders($headers);
         $this->setContent($content);
         $this->setStatusCode($status);
+    }
+
+    /**
+     * 工厂模式获取 Response 实例
+     *
+     * @param string $content
+     * @param int $status
+     * @param array $headers
+     *
+     * @return Response
+     */
+    public static function create($content = '', $status = 200, $headers = [])
+    {
+        return new static($content, $status, $headers);
     }
 
     /**
@@ -213,7 +227,7 @@ class Response
             return $this;
         }
 
-        $charset = $this->charset ?: 'UTF-8';
+        $charset = $this->charset ?: 'utf-8';
 
         if (!array_key_exists('Content-Type', $this->headers)) {
             $this->addHeader('Content-Type', 'text/html; charset='.$charset);
