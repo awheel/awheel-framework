@@ -39,7 +39,7 @@ class Kernel
     }
 
     /**
-     * 出去 Request 请求
+     * 处理 Request 请求
      *
      * @param Request $request
      *
@@ -67,7 +67,9 @@ class Kernel
         }
         catch (Exception $e) {
             if ($this->app->configGet('app.debug')) {
-                throw $e;
+                if ($this->app->configGet('app.debug')) {
+                    throw new Exception('Http Request handle error', $e->getCode(), $e);
+                }
             }
 
             // todo 由用户控制跳转方向, 渲染错误信息,
