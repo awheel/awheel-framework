@@ -478,7 +478,7 @@ class Request
             $pathInfo = substr($pathInfo, 0, stripos($pathInfo, '?'));
         }
 
-        return '/' . ltrim($pathInfo, '/');
+        return '/' . trim($pathInfo, '/');
     }
 
     /**
