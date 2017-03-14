@@ -369,6 +369,11 @@ class Request
         // todo
     }
 
+    public function getHeaders()
+    {
+        // todo
+    }
+
     /**
      * 从 $_SERVER 中获取变量
      *
