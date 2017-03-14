@@ -318,6 +318,11 @@ class Request
         // todo
     }
 
+    /**
+     * 返回请求的 uri
+     *
+     * @return mixed|string
+     */
     public function uri()
     {
         $uri = urldecode($this->server('REQUEST_URI'));
@@ -326,6 +331,11 @@ class Request
         return $uri;
     }
 
+    /**
+     * 返回带完整的请求 uri
+     *
+     * @return string
+     */
     public function fullUri()
     {
         return ($this->server('HTTPS') ? 'https://' : 'http://') . $this->server('HTTP_HOST').$this->uri();
