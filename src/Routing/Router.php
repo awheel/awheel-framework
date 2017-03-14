@@ -57,14 +57,14 @@ class Router
      *
      * @var string
      */
-    protected $namespace = 'App\\Controller';
+    protected $namespace = 'app\\Controller';
 
     /**
      * 路由中间件
      *
      * @var array
      */
-    protected $middlewareNamespace = 'App\\Middleware';
+    protected $middlewareNamespace = 'app\\Middleware';
 
     /**
      * 设置 GET 请求路由
