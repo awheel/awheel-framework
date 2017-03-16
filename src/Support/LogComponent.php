@@ -25,6 +25,7 @@ class LogComponent implements Component
 
     /**
      * 组件注册方法
+     * todo 由配置文件制定 Handler
      *
      * @return mixed
      */
