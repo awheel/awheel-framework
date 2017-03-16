@@ -13,7 +13,7 @@ use light\Console\Kernel as ConsoleKernel;
  *
  * @param $make
  *
- * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|null
+ * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel
  */
 function app($make = null)
 {
