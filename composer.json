@@ -14,12 +14,8 @@
         "php": ">=5.4.0",
         "nikic/fast-route": "^1.2",
         "symfony/console": "^2.8",
-        "light/array-factory": "^1.0"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.4-dev"
-        }
+        "light/array-factory": "^1.0",
+        "monolog/monolog": "^1.22"
     },
     "autoload": {
         "psr-4": {

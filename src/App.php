@@ -46,6 +46,15 @@ class App extends Container
     protected $config = [];
 
     /**
+     * 系统级别组件
+     *
+     * @var array
+     */
+    protected $component = [
+        'light\Support\LogComponent'
+    ];
+
+    /**
      * App constructor.
      *
      * @param $path
@@ -59,7 +68,6 @@ class App extends Container
         // 记录程序运行环境
         $this->basePath = $path;
         $this->environment = $environment;
-
         $this->name = $this->configGet('app.name', 'light');
 
         return $this;
@@ -93,7 +101,7 @@ class App extends Container
         static::setInstance($this);
 
         // 加载组件
-        $component = $this->configGet('app.component');
+        $component = $this->component + $this->configGet('app.component');
         foreach ($component as $item) {
             $class = new $item;
             if (!$class instanceof Component) continue;

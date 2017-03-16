@@ -1,6 +1,7 @@
 <?php
 
 use light\App;
+use Monolog\Logger;
 use light\Container;
 use light\Http\Kernel;
 use light\Http\Request;
@@ -13,7 +14,7 @@ use light\Console\Kernel as ConsoleKernel;
  *
  * @param $make
  *
- * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel
+ * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|Logger
  */
 function app($make = null)
 {

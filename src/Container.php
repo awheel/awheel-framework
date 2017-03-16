@@ -3,6 +3,7 @@
 namespace light;
 
 use Closure;
+use Monolog\Logger;
 use light\Http\Request;
 use light\Http\Response;
 use light\Routing\Router;
@@ -75,7 +76,7 @@ class Container
      *
      * @param $abstract
      *
-     * @return App|Router|Request|Response|HttpKernel|ConsoleKernel|null
+     * @return App|Router|Request|Response|HttpKernel|ConsoleKernel|Logger
      */
     public function make($abstract)
     {

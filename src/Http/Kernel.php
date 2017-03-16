@@ -66,6 +66,15 @@ class Kernel
             $response = $router->dispatch($request);
         }
         catch (Exception $e) {
+            if ($e->getCode() != 404 && $e->getCode() != 405) {
+                $this->app->make('log')->error('runtime exception '. $e->getMessage(), [
+                    'code' => $e->getCode(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+            }
+
             if ($this->app->configGet('app.debug')) {
                 throw new Exception('Http Request handle error', $e->getCode(), $e);
             }
