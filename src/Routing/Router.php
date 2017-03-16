@@ -7,6 +7,7 @@ use FastRoute;
 use light\Http\Request;
 use light\Http\Response;
 use light\Pipeline;
+use light\Http\NotAllowCallException;
 
 class Router
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace light\Routing;
+namespace light\Http;
 
 class NotAllowCallException extends \BadFunctionCallException
 {
