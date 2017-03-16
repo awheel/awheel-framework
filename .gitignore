@@ -1,10 +1,4 @@
 /vendor
-/node_modules
-.idea
-.svn
 composer.phar
 composer.lock
-.php_cs.cache
-.DS_Store
-Thumbs.db
 
