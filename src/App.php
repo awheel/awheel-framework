@@ -101,7 +101,7 @@ class App extends Container
         static::setInstance($this);
 
         // 加载组件
-        $component = $this->component + $this->configGet('app.component');
+        $component = array_merge($this->component, $this->configGet('app.component'));
         foreach ($component as $item) {
             $class = new $item;
             if (!$class instanceof Component) continue;
