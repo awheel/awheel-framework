@@ -5,6 +5,7 @@ namespace light\Support;
 use Monolog\Logger;
 use light\Component;
 use Monolog\Handler\StreamHandler;
+use Monolog\Handler\HandlerInterface;
 
 /**
  * Log 组件
@@ -25,7 +26,6 @@ class LogComponent implements Component
 
     /**
      * 组件注册方法
-     * todo 由配置文件制定 Handler
      *
      * @return mixed
      */
@@ -34,9 +34,14 @@ class LogComponent implements Component
         return function () {
             $file = app()->configGet('app.log_file', '/tmp/light.log');
             $level = app()->configGet('app.log_level', 'ERROR');
+            $handler = app()->configGet('app.log_handler');
+
+            if (!$handler || ! $handler instanceof HandlerInterface) {
+                $handler = new StreamHandler($file, $level);
+            }
 
             $log = new Logger(app()->name());
-            $log->pushHandler(new StreamHandler($file, $level));
+            $log->pushHandler($handler);
 
             return $log;
         };
