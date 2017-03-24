@@ -38,7 +38,7 @@ class Container
      *
      * @return boolean
      */
-    public static function setInstance(Container $container)
+    static public function setInstance(Container $container)
     {
         static::$instance = $container;
 
@@ -50,7 +50,7 @@ class Container
      *
      * @return \light\App
      */
-    public static function getInstance()
+    static public function getInstance()
     {
         return static::$instance;
     }
@@ -63,7 +63,7 @@ class Container
      *
      * @return boolean
      */
-    public function register($abstract, $instance)
+    static public function register($abstract, $instance)
     {
         static::$instances[$abstract] = $instance;
 
@@ -78,7 +78,7 @@ class Container
      *
      * @return App|Router|Request|Response|HttpKernel|ConsoleKernel|Logger
      */
-    public function make($abstract)
+    static public function make($abstract)
     {
         $instance = isset(static::$instances[$abstract]) ? static::$instances[$abstract] : null;
         if ($instance instanceof Closure) {
