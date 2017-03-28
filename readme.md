@@ -6,17 +6,16 @@ Official [Web Site](http://git.fengqi.tk/light/light-framework)
 
 框架核心强大简洁, 不参与任何业务, 所需任何功能均可自定义扩展.
 
-目前应用: [HupuTv](http://hupu.tv), [NBA比赛中心](https://nba.hupu.com/games)
+目前应用: [HupuTv](http://hupu.tv), [NBA比赛中心](https://nba.hupu.com/games), 虎扑足球 App, [虎扑微信服务](https://wechat.hupu.com)
 
-## Documentation
+## core
 
 - [ ] 路由
 - [ ] 命令行
 - [ ] 控制器
 - [ ] 中间件
-- [ ] 辅助方法
+- [ ] 组件
 - [ ] 按需加载
-- [ ] 扩展
 
 ## License
 

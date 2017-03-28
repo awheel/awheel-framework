@@ -4,9 +4,11 @@ namespace light\Routing;
 
 use Closure;
 use FastRoute;
+use light\Pipeline;
 use light\Http\Request;
 use light\Http\Response;
-use light\Pipeline;
+use light\Exceptions\NotFoundHttpException;
+use light\Exceptions\NotAllowCallException;
 
 class Router
 {
@@ -57,14 +59,14 @@ class Router
      *
      * @var string
      */
-    protected $namespace = 'App\\Controller';
+    protected $namespace = 'app\\Controller';
 
     /**
      * 路由中间件
      *
      * @var array
      */
-    protected $middlewareNamespace = 'App\\Middleware';
+    protected $middlewareNamespace = 'app\\Middleware';
 
     /**
      * 设置 GET 请求路由
@@ -349,7 +351,9 @@ class Router
      *
      * @param $request
      *
-     * @return bool|Response|\Exception
+     * @return bool|Response|
+     *
+     * @throws \Exception
      */
     public function dispatch(Request $request)
     {
@@ -371,7 +375,7 @@ class Router
 
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
-                throw new \BadMethodCallException('404 Not Found: '.$pathInfo, 404);
+                throw new NotFoundHttpException('404 Not Found: '.$pathInfo, 404);
                 break;
 
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:

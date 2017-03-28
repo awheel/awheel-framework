@@ -106,6 +106,8 @@ class Response
     {
         $this->statusCode = (int) $code;
 
+        // todo setStatusText
+
         return $this;
     }
 
@@ -152,6 +154,16 @@ class Response
         $this->charset = $charset;
 
         return $this;
+    }
+
+    /**
+     * 设置响应类型
+     *
+     * @param $contentType
+     */
+    public function setContentType($contentType)
+    {
+        $this->headers['Content-Type'] = $contentType;
     }
 
     /**

@@ -39,7 +39,7 @@ class Kernel
     }
 
     /**
-     * 出去 Request 请求
+     * 处理 Request 请求
      *
      * @param Request $request
      *
@@ -66,11 +66,18 @@ class Kernel
             $response = $router->dispatch($request);
         }
         catch (Exception $e) {
+            $this->app->make('log')->error('runtime exception: '. $e->getMessage(), [
+                'code' => $e->getCode(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
             if ($this->app->configGet('app.debug')) {
-                throw $e;
+                throw new Exception('Http Request handle error', $e->getCode(), $e);
             }
 
-            // todo 由用户控制跳转方向, 渲染错误信息,
+            $response = new Response('', is_subclass_of($e, 'light\Exceptions\HttpException') ? $e->getStatusCode() : $e->getCode());
         }
 
         return $response;

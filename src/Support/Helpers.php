@@ -1,11 +1,11 @@
 <?php
 
 use light\App;
-use light\Container;
-use light\Http\Kernel;
+use Monolog\Logger;
 use light\Http\Request;
 use light\Http\Response;
 use light\Routing\Router;
+use light\Http\Kernel as HttpKernel;
 use light\Console\Kernel as ConsoleKernel;
 
 /**
@@ -13,15 +13,15 @@ use light\Console\Kernel as ConsoleKernel;
  *
  * @param $make
  *
- * @return mixed|App|Router|Request|Response|Kernel|ConsoleKernel|null
+ * @return App|Router|Request|Response|HttpKernel|ConsoleKernel|Logger
  */
 function app($make = null)
 {
     if (is_null($make)) {
-        return Container::getInstance();
+        return App::getInstance();
     }
 
-    return Container::getInstance()->make($make);
+    return App::getInstance()->make($make);
 }
 
 /**
@@ -34,7 +34,7 @@ function app($make = null)
  */
 function route($name, $params = [])
 {
-    $namedRoutes = app()->make('router')->namedRoutes;
+    $namedRoutes = app('router')->namedRoutes;
     if (!isset($namedRoutes[$name])) return $name;
 
     $uri = $namedRoutes[$name];
