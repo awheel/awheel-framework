@@ -3,6 +3,7 @@
 namespace light\Routing;
 
 use BadMethodCallException;
+use light\Exceptions\NotFoundHttpException;
 
 /**
  * 控制器基类
@@ -16,10 +17,12 @@ abstract class Controller
      *
      * @param $method
      * @param $params
+     *
+     * @throws NotFoundHttpException
      */
     public function missingMethod($method, $params)
     {
-        throw new BadMethodCallException("Method [$method] does not exist.");
+        throw new NotFoundHttpException("Method [$method] does not exist.");
     }
 
     /**
@@ -27,9 +30,11 @@ abstract class Controller
      *
      * @param $name
      * @param $arguments
+     *
+     * @throws BadMethodCallException
      */
     public function __call($name, $arguments)
     {
-        throw new BadMethodCallException("Method [$name] does not exist.");
+        throw new BadMethodCallException("Method [$name}] does not exist.");
     }
 }
