@@ -35,6 +35,6 @@ abstract class Controller
      */
     public function __call($name, $arguments)
     {
-        throw new BadMethodCallException("Method [$name}] does not exist.");
+        throw new BadMethodCallException("Method [$name] does not exist.", 400);
     }
 }
