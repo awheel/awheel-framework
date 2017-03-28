@@ -25,8 +25,20 @@ class HttpException extends Exception
      */
     protected $headers;
 
-    public function __construct($statusCode, $message = "", $code = 0, Exception $previous = null)
+    /**
+     * HttpException constructor.
+     *
+     * @param string $statusCode
+     * @param string $message
+     * @param Exception|null $previous
+     * @param int $code
+     * @param array $headers
+     */
+    public function __construct($statusCode, $message = "", $previous = null, $code = 0, $headers = [])
     {
+        $this->statusCode = $statusCode;
+        $this->headers = $headers;
+
         parent::__construct($message, $code, $previous);
     }
 

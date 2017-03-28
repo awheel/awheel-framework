@@ -4,7 +4,6 @@ namespace light\Http;
 
 use Exception;
 use light\App;
-use light\Exceptions\HttpException;
 use light\Routing\Router;
 
 /**
@@ -78,7 +77,7 @@ class Kernel
                 throw new Exception('Http Request handle error', $e->getCode(), $e);
             }
 
-            $response = new Response('', $e instanceof HttpException ? $e->getStatusCode() : $e->getCode());
+            $response = new Response('', is_subclass_of($e, 'light\Exceptions\HttpException') ? $e->getStatusCode() : $e->getCode());
         }
 
         return $response;
