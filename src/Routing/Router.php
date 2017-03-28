@@ -4,9 +4,10 @@ namespace light\Routing;
 
 use Closure;
 use FastRoute;
+use light\Pipeline;
 use light\Http\Request;
 use light\Http\Response;
-use light\Pipeline;
+use light\Exceptions\NotFoundHttpException;
 use light\Exceptions\NotAllowCallException;
 
 class Router
@@ -350,7 +351,9 @@ class Router
      *
      * @param $request
      *
-     * @return bool|Response|\Exception
+     * @return bool|Response|
+     *
+     * @throws \Exception
      */
     public function dispatch(Request $request)
     {
@@ -372,7 +375,7 @@ class Router
 
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
-                throw new \BadMethodCallException('404 Not Found: '.$pathInfo, 404);
+                throw new NotFoundHttpException('404 Not Found: '.$pathInfo, 404);
                 break;
 
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:

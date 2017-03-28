@@ -4,6 +4,7 @@ namespace light\Http;
 
 use Exception;
 use light\App;
+use light\Exceptions\HttpException;
 use light\Routing\Router;
 
 /**
@@ -66,7 +67,7 @@ class Kernel
             $response = $router->dispatch($request);
         }
         catch (Exception $e) {
-            $this->app->make('log')->error('runtime exception '. $e->getMessage(), [
+            $this->app->make('log')->error('runtime exception: '. $e->getMessage(), [
                 'code' => $e->getCode(),
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),
@@ -77,8 +78,7 @@ class Kernel
                 throw new Exception('Http Request handle error', $e->getCode(), $e);
             }
 
-            // todo render exception
-            $response = new Response('', $e->getCode());
+            $response = new Response('', $e instanceof HttpException ? $e->getStatusCode() : $e->getCode());
         }
 
         return $response;
