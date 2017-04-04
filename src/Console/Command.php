@@ -2,13 +2,20 @@
 
 namespace light\Console;
 
+use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Style\OutputStyle;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
+/**
+ * 控制台命令
+ *
+ * @package light\Console
+ */
 abstract class Command extends SymfonyCommand
 {
     /**
@@ -267,5 +274,24 @@ abstract class Command extends SymfonyCommand
         $input = new ArrayInput($arguments);
 
         return $command->run($input, $this->output);
+    }
+
+    /**
+     * 调用命令行(系统命令)命令
+     *
+     * @param $command
+     *
+     * @return string
+     */
+    public function callSystem($command)
+    {
+        $process = new Process($command);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        return $process->getOutput();
     }
 }
