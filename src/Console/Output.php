@@ -1,13 +1,13 @@
 <?php
 
-namespace light\Console;
+namespace awheel\Console;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  * 控制台输出
  *
- * @package light\Console
+ * @package awheel\Console
  */
 class Output extends ConsoleOutput
 {

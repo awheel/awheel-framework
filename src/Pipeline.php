@@ -1,13 +1,13 @@
 <?php
 
-namespace light;
+namespace awheel;
 
 use Closure;
 
 /**
  * 管道: request
  *
- * @package light
+ * @package awheel
  */
 class Pipeline
 {

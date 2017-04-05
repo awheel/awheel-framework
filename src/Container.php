@@ -1,19 +1,19 @@
 <?php
 
-namespace light;
+namespace awheel;
 
 use Closure;
 use Monolog\Logger;
-use light\Http\Request;
-use light\Http\Response;
-use light\Routing\Router;
-use light\Http\Kernel as HttpKernel;
-use light\Console\Kernel as ConsoleKernel;
+use awheel\Http\Request;
+use awheel\Http\Response;
+use awheel\Routing\Router;
+use awheel\Http\Kernel as HttpKernel;
+use awheel\Console\Kernel as ConsoleKernel;
 
 /**
  * 容器
  *
- * @package light
+ * @package awheel
  */
 class Container
 {
@@ -48,7 +48,7 @@ class Container
     /**
      * 获取应用实例
      *
-     * @return \light\App
+     * @return \awheel\App
      */
     static public function getInstance()
     {

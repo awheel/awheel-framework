@@ -1,13 +1,13 @@
 <?php
 
-namespace light\Exceptions;
+namespace awheel\Exceptions;
 
 use Exception;
 
 /**
  * 路由未匹配异常
  *
- * @package light\Exceptions
+ * @package awheel\Exceptions
  */
 class NotFoundHttpException extends HttpException
 {

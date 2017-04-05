@@ -1,15 +1,15 @@
 <?php
 
-namespace light;
+namespace awheel;
 
 use Closure;
-use light\Http\Request;
+use awheel\Http\Request;
 
 /**
  * 中间件
  * todo 中间件分级别, 例如: App 层面, Kernel 层面, Router/Console 层面
  *
- * @package light
+ * @package awheel
  */
 abstract class Middleware
 {

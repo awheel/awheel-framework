@@ -1,8 +1,8 @@
 <?php
 
-namespace light\Console;
+namespace awheel\Console;
 
-use light\App;
+use awheel\App;
 use Symfony\Component\Console\Application;
 
 /**
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Application;
  *
  * @link https://symfony.com/doc/2.8/components/console/index.html
  *
- * @package light\Console
+ * @package awheel\Console
  */
 class Kernel
 {

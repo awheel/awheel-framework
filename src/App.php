@@ -1,17 +1,17 @@
 <?php
 
-namespace light;
+namespace awheel;
 
-use light\Http\Request;
-use light\Console\Input;
-use light\Console\Output;
-use light\Http\Kernel as HttpKernel;
-use light\Console\Kernel as ConsoleKernel;
+use awheel\Http\Request;
+use awheel\Console\Input;
+use awheel\Console\Output;
+use awheel\Http\Kernel as HttpKernel;
+use awheel\Console\Kernel as ConsoleKernel;
 
 /**
- * Light App
+ * Awheel App
  *
- * @package light
+ * @package awheel
  */
 class App extends Container
 {
@@ -51,7 +51,7 @@ class App extends Container
      * @var array
      */
     protected $component = [
-        'light\Support\LogComponent'
+        'awheel\Support\LogComponent'
     ];
 
     /**
@@ -68,7 +68,7 @@ class App extends Container
         // 记录程序运行环境
         $this->basePath = $path;
         $this->environment = $environment;
-        $this->name = $this->configGet('app.name', 'light');
+        $this->name = $this->configGet('app.name', 'awheel');
 
         return $this;
     }
@@ -246,7 +246,7 @@ class App extends Container
      */
     public function name()
     {
-        return empty($this->name) ? 'light' : $this->name;
+        return empty($this->name) ? 'awheel' : $this->name;
     }
 
     /**

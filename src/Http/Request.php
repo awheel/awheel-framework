@@ -1,13 +1,13 @@
 <?php
 
-namespace light\Http;
+namespace awheel\Http;
 
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 /**
  * http 请求
  *
- * @package light
+ * @package awheel
  */
 class Request extends SymfonyRequest
 {

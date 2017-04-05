@@ -1,15 +1,15 @@
 <?php
 
-namespace light\Http;
+namespace awheel\Http;
 
 use Exception;
-use light\App;
-use light\Routing\Router;
+use awheel\App;
+use awheel\Routing\Router;
 
 /**
  * Http Kernel
  *
- * @package light\Http
+ * @package awheel\Http
  */
 class Kernel
 {
@@ -77,7 +77,7 @@ class Kernel
                 throw new Exception('Http Request handle error', $e->getCode(), $e);
             }
 
-            $response = new Response('', is_subclass_of($e, 'light\Exceptions\HttpException') ? $e->getStatusCode() : $e->getCode());
+            $response = new Response('', is_subclass_of($e, 'awheel\Exceptions\HttpException') ? $e->getStatusCode() : $e->getCode());
         }
 
         return $response;

@@ -1,6 +1,6 @@
 <?php
 
-namespace light\Console;
+namespace awheel\Console;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -14,7 +14,7 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
 /**
  * 控制台命令
  *
- * @package light\Console
+ * @package awheel\Console
  */
 abstract class Command extends SymfonyCommand
 {
@@ -94,7 +94,7 @@ abstract class Command extends SymfonyCommand
      */
     public function handle()
     {
-        return 'Hi Light';
+        return 'Hi Awheel';
     }
 
     /**

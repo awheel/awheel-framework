@@ -1,12 +1,12 @@
 <?php
 
-use light\App;
+use awheel\App;
 use Monolog\Logger;
-use light\Http\Request;
-use light\Http\Response;
-use light\Routing\Router;
-use light\Http\Kernel as HttpKernel;
-use light\Console\Kernel as ConsoleKernel;
+use awheel\Http\Request;
+use awheel\Http\Response;
+use awheel\Routing\Router;
+use awheel\Http\Kernel as HttpKernel;
+use awheel\Console\Kernel as ConsoleKernel;
 
 /**
  * 返回应用实例, 或应用组件

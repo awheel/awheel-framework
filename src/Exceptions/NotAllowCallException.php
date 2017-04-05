@@ -1,13 +1,13 @@
 <?php
 
-namespace light\Exceptions;
+namespace awheel\Exceptions;
 
 use Exception;
 
 /**
  * 请求方式不允许异常
  *
- * @package light\Exceptions
+ * @package awheel\Exceptions
  */
 class NotAllowCallException extends HttpException
 {

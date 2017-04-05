@@ -1,14 +1,14 @@
 <?php
 
-namespace light\Routing;
+namespace awheel\Routing;
 
 use BadMethodCallException;
-use light\Exceptions\NotFoundHttpException;
+use awheel\Exceptions\NotFoundHttpException;
 
 /**
  * 控制器基类
  *
- * @package light
+ * @package awheel
  */
 abstract class Controller
 {

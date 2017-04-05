@@ -1,19 +1,19 @@
 <?php
 
-namespace light\Routing;
+namespace awheel\Routing;
 
 use Closure;
 use FastRoute;
-use light\Pipeline;
-use light\Http\Request;
-use light\Http\Response;
-use light\Exceptions\NotFoundHttpException;
-use light\Exceptions\NotAllowCallException;
+use awheel\Pipeline;
+use awheel\Http\Request;
+use awheel\Http\Response;
+use awheel\Exceptions\NotFoundHttpException;
+use awheel\Exceptions\NotAllowCallException;
 
 /**
  * 路由
  *
- * @package light\Routing
+ * @package awheel\Routing
  */
 class Router
 {

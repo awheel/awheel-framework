@@ -1,9 +1,9 @@
 <?php
 
-namespace light\Support;
+namespace awheel\Support;
 
 use Monolog\Logger;
-use light\Component;
+use awheel\Component;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\HandlerInterface;
 
@@ -32,7 +32,7 @@ class LogComponent implements Component
     public function register()
     {
         return function () {
-            $file = app()->configGet('app.log_file', '/tmp/light.log');
+            $file = app()->configGet('app.log_file', '/tmp/awheel.log');
             $level = app()->configGet('app.log_level', 'ERROR');
             $handler = app()->configGet('app.log_handler');
 

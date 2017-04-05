@@ -1,6 +1,6 @@
 <?php
 
-namespace light\Http;
+namespace awheel\Http;
 
 use ArrayAccess;
 use JsonSerializable;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 /**
  * http 响应
  *
- * @package light
+ * @package awheel
  */
 class Response extends SymfonyResponse
 {

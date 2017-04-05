@@ -1,13 +1,13 @@
 <?php
 
-namespace light\Exceptions;
+namespace awheel\Exceptions;
 
 use Exception;
 
 /**
  * Http 异常
  *
- * @package light\Exceptions
+ * @package awheel\Exceptions
  */
 class HttpException extends Exception
 {
