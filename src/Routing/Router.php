@@ -10,6 +10,11 @@ use light\Http\Response;
 use light\Exceptions\NotFoundHttpException;
 use light\Exceptions\NotAllowCallException;
 
+/**
+ * 路由
+ *
+ * @package light\Routing
+ */
 class Router
 {
     /**
