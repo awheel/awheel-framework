@@ -257,6 +257,7 @@ class Router
      */
     public function addRoute($method, $uri, $action)
     {
+        $uri = strtolower($uri);
         $action = $this->parseAction($action);
 
         if (isset($this->groupAttributes)) {
@@ -375,7 +376,7 @@ class Router
         });
 
         $method = $request->getMethod();
-        $pathInfo = $request->getPathInfo();
+        $pathInfo = strtolower($request->getPathInfo());
         $routeInfo = $dispatcher->dispatch($method, $pathInfo);
 
         switch ($routeInfo[0]) {
