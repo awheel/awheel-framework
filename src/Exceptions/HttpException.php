@@ -28,13 +28,13 @@ class HttpException extends Exception
     /**
      * HttpException constructor.
      *
-     * @param string $statusCode
+     * @param int $statusCode
      * @param string $message
      * @param Exception|null $previous
      * @param int $code
      * @param array $headers
      */
-    public function __construct($statusCode, $message = "", $previous = null, $code = 0, $headers = [])
+    public function __construct($statusCode = 500, $message = "", $previous = null, $code = 0, $headers = [])
     {
         $this->statusCode = $statusCode;
         $this->headers = $headers;

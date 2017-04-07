@@ -5,14 +5,14 @@ namespace awheel\Exceptions;
 use Exception;
 
 /**
- * 请求方式不允许异常
+ * 无效请求异常
  *
  * @package awheel\Exceptions
  */
-class NotAllowCallException extends HttpException
+class BadRequestException extends HttpException
 {
     /**
-     * NotAllowCallException constructor.
+     * BadRequestException constructor.
      *
      * @param string $message
      * @param int $code
@@ -20,6 +20,6 @@ class NotAllowCallException extends HttpException
      */
     public function __construct($message = "", $code = 0, Exception $previous = null)
     {
-        parent::__construct(405, $message, $previous, $code);
+        parent::__construct(400, $message, $previous, $code);
     }
 }
