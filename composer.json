@@ -12,7 +12,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "awheel/support": "dev-master",
+        "awheel/support": "^0.1",
         "symfony/http-foundation": "^2.8",
         "symfony/console": "^2.8",
         "symfony/process": "^2.8",
