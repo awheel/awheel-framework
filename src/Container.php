@@ -20,7 +20,7 @@ class Container
     /**
      * 应用实例
      *
-     * @var
+     * @var App
      */
     protected static $instance;
 
@@ -34,11 +34,11 @@ class Container
     /**
      * 设置应用实例
      *
-     * @param Container $container
+     * @param App $container
      *
      * @return boolean
      */
-    static public function setInstance(Container $container)
+    static public function setInstance(App $container)
     {
         static::$instance = $container;
 
@@ -48,7 +48,7 @@ class Container
     /**
      * 获取应用实例
      *
-     * @return \awheel\App
+     * @return App
      */
     static public function getInstance()
     {
@@ -71,8 +71,7 @@ class Container
     }
 
     /**
-     * 获取其它组件实例, Ioc
-     * example: app('cache')->get('key'), app()->make('cache')->get('key'), $this->make('cache')->get('key');
+     * 获取其它组件实例
      *
      * @param $abstract
      *

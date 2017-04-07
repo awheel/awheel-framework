@@ -7,7 +7,7 @@ use FastRoute;
 use awheel\Pipeline;
 use awheel\Http\Request;
 use awheel\Http\Response;
-use awheel\Exceptions\NotFoundHttpException;
+use awheel\Exceptions\NotFoundException;
 use awheel\Exceptions\NotAllowCallException;
 
 /**
@@ -381,7 +381,7 @@ class Router
 
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
-                throw new NotFoundHttpException('404 Not Found: '.$pathInfo, 404);
+                throw new NotFoundException('404 Not Found: '.$pathInfo, 404);
                 break;
 
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:

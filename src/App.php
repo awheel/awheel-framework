@@ -15,7 +15,7 @@ use awheel\Console\Kernel as ConsoleKernel;
  */
 class App extends Container
 {
-    const VERSION = '1.4.0';
+    const VERSION = '1.5.0';
 
     /**
      * 应用名称
@@ -157,6 +157,36 @@ class App extends Container
     }
 
     /**
+     * 是否允许在 控制台下面
+     *
+     * @return bool
+     */
+    public function runningInConsole()
+    {
+        return php_sapi_name() == 'cli';
+    }
+
+    /**
+     * 获取当前运行环境
+     *
+     * @return string
+     */
+    public function environment()
+    {
+        return $this->environment;
+    }
+
+    /**
+     * 获取应用名称
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return empty($this->name) ? 'awheel' : $this->name;
+    }
+
+    /**
      * 获取配置, example: configGet("cache.config.redis.host", 'default_host');
      *
      * @param $key
@@ -217,36 +247,6 @@ class App extends Container
         if (!$key) return false;
 
         return $this->loadConfigure(current(explode('.', $key)), true);
-    }
-
-    /**
-     * 是否允许在 控制台下面
-     *
-     * @return bool
-     */
-    public function runningInConsole()
-    {
-        return php_sapi_name() == 'cli';
-    }
-
-    /**
-     * 获取当前运行环境
-     *
-     * @return string
-     */
-    public function environment()
-    {
-        return $this->environment;
-    }
-
-    /**
-     * 获取应用名称
-     *
-     * @return string
-     */
-    public function name()
-    {
-        return empty($this->name) ? 'awheel' : $this->name;
     }
 
     /**

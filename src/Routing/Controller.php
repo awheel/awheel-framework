@@ -3,7 +3,7 @@
 namespace awheel\Routing;
 
 use BadMethodCallException;
-use awheel\Exceptions\NotFoundHttpException;
+use awheel\Exceptions\NotFoundException;
 
 /**
  * 控制器基类
@@ -18,11 +18,11 @@ abstract class Controller
      * @param $method
      * @param $params
      *
-     * @throws NotFoundHttpException
+     * @throws NotFoundException
      */
     public function missingMethod($method, $params)
     {
-        throw new NotFoundHttpException("Method [$method] does not exist.");
+        throw new NotFoundException("Method [$method] does not exist.");
     }
 
     /**
