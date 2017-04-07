@@ -5,7 +5,7 @@ namespace awheel;
 use Closure;
 
 /**
- * 管道: request
+ * 管道
  *
  * @package awheel
  */

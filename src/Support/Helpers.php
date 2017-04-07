@@ -2,6 +2,7 @@
 
 use awheel\App;
 use Monolog\Logger;
+use awheel\Support\Arr;
 use awheel\Http\Request;
 use awheel\Http\Response;
 use awheel\Routing\Router;
@@ -21,7 +22,7 @@ function app($make = null)
         return App::getInstance();
     }
 
-    return App::getInstance()->make($make);
+    return App::make($make);
 }
 
 /**
@@ -38,9 +39,8 @@ function route($name, $params = [])
     if (!isset($namedRoutes[$name])) return $name;
 
     $uri = $namedRoutes[$name];
-
     $uri = preg_replace_callback('/\{(.*?)(:.*?)?(\{[0-9,]+\})?\}/', function ($m) use (&$params) {
-        return isset($params[$m[1]]) ? ArrayFactory::pull($params, $m[1]) : $m[0];
+        return isset($params[$m[1]]) ? Arr::pull($params, $m[1]) : $m[0];
     }, $uri);
 
     if (! empty($params)) {
@@ -60,17 +60,4 @@ function route($name, $params = [])
 function base_path($path = '')
 {
     return app()->basePath.($path ? '/'.ltrim($path, '/') : '');
-}
-
-if (! function_exists('dd')) {
-    /**
-     * 打印数据, 并停止执行.
-     */
-    function dd()
-    {
-        echo '<pre>';
-        array_map('var_dump', func_get_args());
-        echo '</pre>';
-        exit;
-    }
 }
