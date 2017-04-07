@@ -190,4 +190,20 @@ class Request extends SymfonyRequest
     {
         return is_int(stripos($this->server->get('HTTP_ACCEPT'), 'webp')) || (bool)$this->get('accept_webp') == true;
     }
+
+    /**
+     * 获取用户输入, 通过魔术方法代理: $request->get('name') => $request->name
+     *
+     * @param $name
+     *
+     * @return null
+     */
+    public function __get($name)
+    {
+        if (array_key_exists($name, $this->all())) {
+            return $this->all()[$name];
+        }
+
+        return null;
+    }
 }
