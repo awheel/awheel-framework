@@ -180,4 +180,14 @@ class Request extends SymfonyRequest
 
         return false;
     }
+
+    /**
+     * 判断是否支持 WebP
+     *
+     * @return int
+     */
+    public function acceptWebP()
+    {
+        return is_int(stripos($this->server->get('HTTP_ACCEPT'), 'webp')) || (bool)$this->get('accept_webp') == true;
+    }
 }
