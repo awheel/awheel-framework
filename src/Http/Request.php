@@ -32,6 +32,104 @@ class Request extends SymfonyRequest
     }
 
     /**
+     * 获取上传的文件
+     *
+     * @param $key
+     *
+     * @return mixed
+     */
+    public function file($key)
+    {
+        return $this->files->get($key);
+    }
+
+    /**
+     * 判断是否有上传文件
+     *
+     * @param $key
+     *
+     * @return bool
+     */
+    public function hasFile($key)
+    {
+        return $this->files->has($key);
+    }
+
+    /**
+     * 获取指定名称的 cookie
+     *
+     * @param $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function cookie($key, $default = null)
+    {
+        return $this->cookies->get($key, $default);
+    }
+
+    /**
+     * 返回 Request 全部 cookie
+     *
+     * @return array
+     */
+    public function cookies()
+    {
+        return $this->cookies->all();
+    }
+
+    /**
+     * 检查  Request 中是否有某个名称的 cookie
+     *
+     * @param $key
+     *
+     * @return bool
+     */
+    public function hasCookie($key)
+    {
+        return $this->cookies->has($key);
+    }
+
+    /**
+     * @deprecated
+     * @return string
+     */
+    public function baseUrl()
+    {
+        return rtrim(app()->configGet('app.base_url'), '/');
+    }
+
+    /**
+     * 获取当前 url, 不带参数
+     *
+     * @return string
+     */
+    public function url()
+    {
+        return $this->getUriForPath();
+    }
+
+    /**
+     * 返回请求的 uri
+     *
+     * @return string
+     */
+    public function uri()
+    {
+        return $this->getRequestUri();
+    }
+
+    /**
+     * 返回带完整的请求 uri
+     *
+     * @return string
+     */
+    public function fullUri()
+    {
+        return $this->getUri();
+    }
+
+    /**
      * 获取用户输入, example: request('name', 'default_name'); request(['id', 'name'], ['name' => 'default_name'])
      *
      * @param $key
@@ -108,6 +206,42 @@ class Request extends SymfonyRequest
     public function segments()
     {
         return explode('/', $this->getPathInfo());
+    }
+
+    /**
+     * 获取请求的指定 header
+     *
+     * @param $key
+     * @param null $default
+     *
+     * @return array|string
+     */
+    public function header($key, $default = null)
+    {
+        return $this->headers->get($key, $default);
+    }
+
+    /**
+     * 获取请求的全部 header
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers->all();
+    }
+
+    /**
+     * 从 $_SERVER 中获取变量
+     *
+     * @param $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function server($key, $default = null)
+    {
+        return $this->server->get($key, $default);
     }
 
     /**
