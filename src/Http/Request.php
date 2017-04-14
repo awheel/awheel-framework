@@ -318,11 +318,13 @@ class Request extends SymfonyRequest
     /**
      * 判断是否支持 WebP
      *
+     * @param string $param
+     *
      * @return int
      */
-    public function acceptWebP()
+    public function acceptWebP($param = 'accept_webp')
     {
-        return is_int(stripos($this->server->get('HTTP_ACCEPT'), 'webp')) || (bool)$this->get('accept_webp') == true;
+        return is_int(stripos($this->server->get('HTTP_ACCEPT'), 'webp')) || (bool)$this->get($param) == true;
     }
 
     /**
