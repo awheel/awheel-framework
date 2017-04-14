@@ -75,6 +75,7 @@ class Kernel
     public function resolveCommands($commands)
     {
         $consoleApp = new Application($this->app->name(), App::VERSION);
+        $consoleApp->setCatchExceptions(!$this->app->configGet('app.debug'));
 
         foreach ($commands as $command) {
             $consoleApp->add(new $command);
