@@ -1,12 +1,12 @@
 # CHANGELOG for 1.X
 
-## v1.5.1
+## v1.5.2
 
 ### 修正
 - 修正获取请求头部信息
 - Request 添加 acceptWebP 方法判断浏览器是否支持 webp
 
-## v1.5.0
+## v1.5.1
 
 - 命令行添加 `callSystem()` 接口, 允许至今调用系统命令, 如: ls, mkdir, sed, awk 等
 - Request 和 Response 使用 [Symfony/http-foundation](https://github.com/symfony/http-foundation) 代替
