@@ -15,9 +15,7 @@ use Monolog\Handler\HandlerInterface;
 class LogComponent implements Component
 {
     /**
-     * 组件访问器
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function getAccessor()
     {
@@ -25,9 +23,7 @@ class LogComponent implements Component
     }
 
     /**
-     * 组件注册方法
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function register()
     {
