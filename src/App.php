@@ -62,13 +62,13 @@ class App extends Container
      */
     public function __construct($path, $environment)
     {
-        mb_internal_encoding('UTF-8');
-        date_default_timezone_set($this->configGet('app.timezone', 'Asia/Shanghai'));
-
         // 记录程序运行环境
         $this->basePath = $path;
         $this->environment = $environment;
         $this->name = $this->configGet('app.name', 'awheel');
+
+        mb_internal_encoding('UTF-8');
+        date_default_timezone_set($this->configGet('app.timezone', 'Asia/Shanghai'));
 
         return $this;
     }
