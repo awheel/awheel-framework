@@ -2,6 +2,7 @@
 
 namespace awheel\Http;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 /**
@@ -36,7 +37,7 @@ class Request extends SymfonyRequest
      *
      * @param $key
      *
-     * @return mixed
+     * @return UploadedFile
      */
     public function file($key)
     {
