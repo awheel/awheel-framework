@@ -37,11 +37,12 @@ class Response extends SymfonyResponse
     public function setContent($content)
     {
         if (is_array($content) || $content instanceof ArrayAccess || $content instanceof JsonSerializable) {
-            $this->headers->add(['Content-Type' => 'application/json']);
+            $this->headers->add(['Content-Type' => 'application/json; charset=utf-8']);
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 
         parent::setContent($content);
+        parent::setCharset('utf-8');
 
         return $this;
     }
