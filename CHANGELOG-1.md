@@ -2,6 +2,7 @@
 
 ## v1.5.4
 - Request::file() 注释调整, 返回值注释改为 UploadFile
+- 修正 put/delete/patch/options 识别
 
 ## v1.5.3
 - 修正配置获取错误
