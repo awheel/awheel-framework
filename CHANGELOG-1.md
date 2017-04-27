@@ -1,11 +1,12 @@
 # CHANGELOG for 1.X
 
-## v1.5.2
+## v1.5.4
+- Request::file() 注释调整, 返回值注释改为 UploadFile
+
+## v1.5.3
 - 修正配置获取错误
 
 ## v1.5.2
-
-### 修正
 - 修正获取请求头部信息
 - Request 添加 acceptWebP 方法判断浏览器是否支持 webp
 - 时区从配置文件读取
