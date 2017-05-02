@@ -1,5 +1,8 @@
 # CHANGELOG for 1.X
 
+## v1.5.5
+- 修正 Request::url() 获取当前 url
+
 ## v1.5.4
 - Request::file() 注释调整, 返回值注释改为 UploadFile
 - 修正 put/delete/patch/options 识别
