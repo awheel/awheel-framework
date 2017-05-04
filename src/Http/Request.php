@@ -107,7 +107,7 @@ class Request extends SymfonyRequest
      */
     public function url()
     {
-        return $this->getUriForPath();
+        return $this->getUriForPath($this->getPathInfo());
     }
 
     /**

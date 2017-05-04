@@ -461,4 +461,14 @@ class Router
 
         return call_user_func_array([$instance, $method], $route[2]);
     }
+
+    /**
+     * 获取当前动作
+     *
+     * @return array
+     */
+    public function getAction()
+    {
+        return isset($this->currentRoute['1']) ? $this->currentRoute['1']: [];
+    }
 }
