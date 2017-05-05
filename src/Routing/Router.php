@@ -407,6 +407,7 @@ class Router
     protected function  handleFoundRoute($route, Request $request)
     {
         $this->currentRoute = $route;
+        $request->attributes->add($route[2]);
 
         if (isset($route[1]['middleware']) && !empty($route[1]['middleware'])) {
             $middleware = $route[1]['middleware'];
