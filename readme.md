@@ -4,11 +4,12 @@
 
 框架核心强大简洁, 不参与任何业务, 所需任何功能均可自定义扩展.
 
-## 使用中的项目
+## 应用
 - [虎扑Tv](http://hupu.tv)
 - [NBA比赛中心](https://nba.hupu.com/games)
-- 虎扑足球 App
-- [虎扑微信服务](https://wechat.hupu.com)
+- [虎扑足球 App](https://itunes.apple.com/cn/app/id1203163179?mt=8)
+- [虎扑足球](https://soccer.hupu.com)
+- 虎扑微信服务号
 
 ## Core
 
