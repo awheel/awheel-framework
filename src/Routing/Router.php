@@ -385,7 +385,7 @@ class Router
                 break;
 
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                throw new NotAllowCallException('Method not Allowed: '.$method, 405);
+                throw new NotAllowCallException('Method not Allowed: '.$method.' '.$pathInfo, 405);
                 break;
 
             case FastRoute\Dispatcher::FOUND:
