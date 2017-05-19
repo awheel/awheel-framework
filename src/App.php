@@ -5,8 +5,6 @@ namespace awheel;
 use awheel\Http\Request;
 use awheel\Console\Input;
 use awheel\Console\Output;
-use awheel\Http\Kernel as HttpKernel;
-use awheel\Console\Kernel as ConsoleKernel;
 
 /**
  * Awheel App
@@ -51,7 +49,7 @@ class App extends Container
      * @var array
      */
     protected $component = [
-        'awheel\Support\LogComponent'
+        Support\LogComponent::class
     ];
 
     /**
@@ -67,28 +65,21 @@ class App extends Container
         $this->environment = $environment;
         $this->name = $this->configGet('app.name', 'awheel');
 
+        // 设置时区, 编码
         mb_internal_encoding('UTF-8');
         date_default_timezone_set($this->configGet('app.timezone', 'Asia/Shanghai'));
 
-        return $this;
-    }
-
-    /**
-     * 注册 Kernel
-     *
-     * @return $this
-     */
-    public function registerKernel()
-    {
+        // 注册 kernel
         if ($this->runningInConsole()) {
-            $this->register('ConsoleKernel', new ConsoleKernel($this));
+            $this->register(Console\Kernel::class, new Console\Kernel($this));
         }
         else {
-            $this->register('HttpKernel', new HttpKernel($this));
+            $this->register(Http\Kernel::class, new Http\Kernel($this));
         }
 
         return $this;
     }
+
 
     /**
      * 启动应用
@@ -101,7 +92,7 @@ class App extends Container
         static::setInstance($this);
 
         // 加载组件
-        $component = array_merge($this->component, $this->configGet('app.component'));
+        $component = array_merge($this->component, $this->configGet('component'));
         foreach ($component as $item) {
             $class = new $item;
             if (!$class instanceof Component) continue;
@@ -131,7 +122,7 @@ class App extends Container
     public function run()
     {
         if ($this->runningInConsole()) {
-            $kernel = $kernel = $this->make('ConsoleKernel');
+            $kernel = $kernel = $this->make(Console\Kernel::class);
 
             $input = new Input();
             $output = new Output();
@@ -143,7 +134,7 @@ class App extends Container
             exit($status);
         }
         else {
-            $kernel = $this->make('HttpKernel');
+            $kernel = $this->make(Http\Kernel::class);
 
             $request = Request::createFromGlobals();
             $request::enableHttpMethodParameterOverride();

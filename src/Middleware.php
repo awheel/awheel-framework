@@ -22,11 +22,11 @@ abstract class Middleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // before
+        // pre-operation
 
         $response = $next($request);
 
-        // after
+        //post-operation
 
         return $response;
     }
