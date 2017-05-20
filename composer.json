@@ -27,5 +27,10 @@
         "files": [
             "src/Support/Helpers.php"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
     }
 }
