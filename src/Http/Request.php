@@ -13,6 +13,21 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 class Request extends SymfonyRequest
 {
     /**
+     * 开启 conent_type=application/json 类型请求参数覆写
+     *
+     * 提示: 此方法仅对 POST 请求生效, 或直接使用 $this->getContent() 方法获取 json 数据
+     */
+    public function enableHttpRequestParameterOverride()
+    {
+        if ($this->request->count() == 0 && $this->isMethod('post')) {
+            if (is_int(stripos($_SERVER['CONTENT_TYPE'], 'application/json'))) {
+                $content = (array)json_decode(file_get_contents("php://input"), true);
+                $this->request->add($content);
+            }
+        }
+    }
+
+    /**
      * 获取全部请求输入
      *
      * @return mixed
