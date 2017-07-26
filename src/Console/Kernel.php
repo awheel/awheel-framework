@@ -3,6 +3,7 @@
 namespace awheel\Console;
 
 use awheel\App;
+use awheel\Routing\Router;
 use Symfony\Component\Console\Application;
 
 /**
@@ -51,6 +52,13 @@ class Kernel
     {
         // 启动应用
         $this->app->bootstrap();
+
+        // 加载 Router
+        $router = new Router();
+        require $this->app->basePath.'/bootstrap/routes.php';
+
+        // 注册 Router
+        $this->app->register('router', $router);
 
         // 注册 Input
         $this->app->register('input', $input);
