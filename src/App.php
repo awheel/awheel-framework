@@ -147,6 +147,7 @@ class App extends Container
 
             $request = Request::createFromGlobals();
             $request::enableHttpMethodParameterOverride();
+            $request->enableHttpRequestParameterOverride();
             $response = $kernel->handle($request);
 
             $response->send();
