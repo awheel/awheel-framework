@@ -472,4 +472,8 @@ class Router
     {
         return isset($this->currentRoute['1']) ? $this->currentRoute['1']: [];
     }
+
+    public function getCurrentRoute(){
+        return $this->currentRoute;
+    }
 }
