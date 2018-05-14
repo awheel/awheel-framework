@@ -472,4 +472,14 @@ class Router
 	{
 		return isset($this->currentRoute['1']) ? $this->currentRoute['1']: [];
 	}
+
+    /**
+     * 获取当前路由信息
+     *
+     * @return array
+     */
+    public function getCurrentRoute()
+    {
+        return isset($this->currentRoute) ? $this->currentRoute: [];
+    }
 }
