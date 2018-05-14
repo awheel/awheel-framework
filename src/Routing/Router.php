@@ -474,7 +474,7 @@ class Router
     }
 
     /**
-     * 获取当前动作
+     * 获取路由参数
      *
      * @return array
      */
