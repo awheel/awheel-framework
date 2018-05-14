@@ -50,17 +50,14 @@ class Kernel
     {
         try {
             // 注册 Request
-            $this->app->register('request', $request);
+            $this->app->register(Request::class, $request);
 
             // 启用 App
             $this->app->bootstrap();
 
             // 加载 Router
-            $router = new Router();
-            require $this->app->basePath.'/bootstrap/routes.php';
-
-            // 注册 Router
-            $this->app->register('router', $router);
+            $this->app->register(Router::class, new Router());
+            $router = require $this->app->basePath.'/bootstrap/routes.php';
 
             // 任务分发
             $response = $router->dispatch($request);

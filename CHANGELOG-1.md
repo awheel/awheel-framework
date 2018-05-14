@@ -1,5 +1,11 @@
 # CHANGELOG for 1.X
 
+## v2.0.0
+- 
+
+## v1.5.6
+- 405 异常信息附加 pathInfo
+
 ## v1.5.5
 - 修正 Request::url() 获取当前 url
 - Router 添加获取当前动作
