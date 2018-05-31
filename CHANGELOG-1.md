@@ -1,5 +1,12 @@
 # CHANGELOG for 1.X
 
+## v1.5.7
+- Router 添加获取当前路由
+
+## v1.5.6
+- application/json 请求数据特殊处理(有别于 Symfony, 主要是为了兼容 1.4 版)
+- 允许 command 下调用 route
+
 ## v1.5.5
 - 修正 Request::url() 获取当前 url
 - Router 添加获取当前动作
