@@ -480,6 +480,6 @@ class Router
      */
     public function getCurrentRoute()
     {
-        return isset($this->currentRoute) ? $this->currentRoute: [];
+        return $this->currentRoute;
     }
 }
