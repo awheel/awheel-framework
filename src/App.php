@@ -120,6 +120,9 @@ class App extends Container
             }
         }
 
+        //添加异常handler
+        set_exception_handler(['awheel\Exceptions\ExceptionHandler','handleException']);
+
         return $this;
     }
 
