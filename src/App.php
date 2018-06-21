@@ -101,7 +101,7 @@ class App extends Container
         static::setInstance($this);
 
         // 加载组件
-        $component = array_merge($this->component, $this->configGet('app.component'));
+        $component = array_replace_recursive($this->component, $this->configGet('app.component'));
         foreach ($component as $item) {
             $class = new $item;
             if (!$class instanceof Component) continue;
@@ -277,7 +277,7 @@ class App extends Container
             $env_config = require $env_config_file;
         }
 
-        $this->config[$item] = array_merge($config, $env_config);
+        $this->config[$item] = array_replace_recursive($config, $env_config);
 
         return $this->config[$item];
     }

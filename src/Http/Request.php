@@ -32,7 +32,7 @@ class Request extends SymfonyRequest
      */
     public function input()
     {
-        return array_merge($this->query->all(), $this->attributes->all(), $this->request->all());
+        return array_replace_recursive($this->query->all(), $this->attributes->all(), $this->request->all());
     }
 
     /**
