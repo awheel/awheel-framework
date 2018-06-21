@@ -70,7 +70,6 @@ class Kernel
                 'code' => $e->getCode(),
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
             ]);
 
             if ($this->app->configGet('app.debug')) {
