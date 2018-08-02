@@ -101,7 +101,7 @@ class App extends Container
         static::setInstance($this);
 
         // 加载组件
-        $component = array_replace_recursive($this->component, $this->configGet('app.component'));
+        $component = array_merge($this->component, $this->configGet('app.component'));
         foreach ($component as $item) {
             $class = new $item;
             if (!$class instanceof Component) continue;
@@ -127,6 +127,7 @@ class App extends Container
      * 运行应用
      *
      * @return bool
+     * @throws \Exception
      */
     public function run()
     {
