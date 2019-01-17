@@ -63,7 +63,7 @@ class Pipeline
             return call_user_func($destination, $passable);
         };
 
-        // 要传过的管道, 通常是中间件
+        // 要穿过的管道, 通常是中间件
         $pipes = array_reverse($this->pipes);
 
         // 使用 array_reduce 递归调用

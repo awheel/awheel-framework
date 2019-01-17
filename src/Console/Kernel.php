@@ -47,6 +47,7 @@ class Kernel
      * @param Output|null $output
      *
      * @return int
+     * @throws \Exception
      */
     public function handle(Input $input, Output $output = null)
     {
@@ -58,13 +59,13 @@ class Kernel
         require $this->app->basePath.'/bootstrap/routes.php';
 
         // 注册 Router
-        $this->app->register('router', $router);
+        $this->app::register('router', $router);
 
         // 注册 Input
-        $this->app->register('input', $input);
+        $this->app::register('input', $input);
 
         // 测试 Output
-        $this->app->register('output', $output);
+        $this->app::register('output', $output);
 
         // 获取命令列表
         $commands = require $this->app->basePath.'/bootstrap/commands.php';
@@ -89,7 +90,7 @@ class Kernel
             $consoleApp->add(new $command);
         }
 
-        $this->app->register('consoleApp', $consoleApp);
+        $this->app::register('consoleApp', $consoleApp);
 
         return $consoleApp;
     }

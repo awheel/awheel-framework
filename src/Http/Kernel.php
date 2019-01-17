@@ -50,7 +50,7 @@ class Kernel
     {
         try {
             // 注册 Request
-            $this->app->register('request', $request);
+            $this->app::register('request', $request);
 
             // 启用 App
             $this->app->bootstrap();
@@ -60,13 +60,13 @@ class Kernel
             require $this->app->basePath.'/bootstrap/routes.php';
 
             // 注册 Router
-            $this->app->register('router', $router);
+            $this->app::register('router', $router);
 
             // 任务分发
             $response = $router->dispatch($request);
         }
         catch (Exception $e) {
-            $this->app->make('log')->error('runtime exception: '. $e->getMessage(), [
+            $this->app::make('log')->error('runtime exception: '. $e->getMessage(), [
                 'code' => $e->getCode(),
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),

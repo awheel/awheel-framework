@@ -110,13 +110,13 @@ class App extends Container
             $instances = $class->register();
 
             if (is_object($instances)) {
-                $this->register($accessor, $instances);
+                static::register($accessor, $instances);
                 continue;
             }
 
             if (!is_array($instances)) continue;
             foreach ($instances as $abstract => $instance) {
-                $this->register($accessor.'.'.$abstract, $instance);
+                static::register($accessor.'.'.$abstract, $instance);
             }
         }
 
@@ -132,7 +132,7 @@ class App extends Container
     public function run()
     {
         if ($this->runningInConsole()) {
-            $kernel = $kernel = $this->make('ConsoleKernel');
+            $kernel = $kernel = static::make('ConsoleKernel');
 
             $input = new Input();
             $output = new Output();
@@ -144,7 +144,7 @@ class App extends Container
             exit($status);
         }
         else {
-            $kernel = $this->make('HttpKernel');
+            $kernel = static::make('HttpKernel');
 
             $request = Request::createFromGlobals();
             $request::enableHttpMethodParameterOverride();
