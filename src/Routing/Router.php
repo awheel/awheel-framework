@@ -192,6 +192,8 @@ class Router
     /**
      * 设置 restful 路由, 自带 GET/POST/PUT/DELETE 四个方法
      *
+     * @deprecated
+     *
      * @param $uri
      * @param $action
      *
